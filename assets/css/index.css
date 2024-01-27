@@ -120,7 +120,7 @@ p{
     height: 50px;
     width: 50px;
 }
-.section-online-text{
+.section-online-text, .tutor-heading, .booking-class > p, .find-text{
     font-size: 25px;
     font-weight: 600;
     color: #806868;
@@ -179,6 +179,90 @@ p{
     border-left: 2px solid grey;
     padding-left: 10px;
 }
+.tutor{
+    width: 100%;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../images/bluevector.jpg);
+    gap: 40px;
+    padding: 20px;
+}
+.row{
+    margin-top: 50px;
+}
+.card{
+    background-image: url(../images/tutor-background.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.card > img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -77px;
+    border-radius: 50%;
+}
+.card-body{
+    text-align: center;
+    margin: 50px 0px;
+}
+.card-footer{
+    width: 100%;
+    background-color: #6e9ecf;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.text-body-secondary{
+    color: white !important; 
+    font-weight: 600;  
+}
+.footer{
+    margin-top: 10px;
+    background-color: #006aa5;
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+.booking-class, .find-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.booking-class{
+    margin: 40px;
+}
+.find-section{
+    flex-direction: row;
+    gap: 70px;
+    margin: 40px;
+}
+.find-section2{
+    border-left: 2px solid grey;
+    padding-left: 50px;
+}
+.find-button{
+    background-color: #2f87b8;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 40px;
+    margin-top: 20px;
+}
+.find-section1 , .find-section2{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 @media screen and (max-width: 1139px) {
     .section-online{
         width: 100%;
@@ -201,5 +285,22 @@ p{
     }
     .address{
         margin-top: 20px;
+    }
+    .row{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .card{
+        margin-top: 100px;
+        width: 100%;
+    }
+    .find-section{
+        flex-direction: column;
+    }
+    .find-section2{
+        border: none;
+        padding-left:0px;
+        width: 100%;
     }
 }
