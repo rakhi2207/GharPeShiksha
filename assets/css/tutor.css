@@ -1,0 +1,248 @@
+p{
+    margin: 0px;
+}
+.collapse{
+    justify-content: right;
+}
+.nav-link{
+    margin-left: 20px;
+    margin-right: 20px;
+    color: white !important;
+}
+
+.logo{
+    height: 50px;
+    background-color: white;
+}
+.navbar{
+    background-color: #326cb5 !important;
+}
+
+.logoTitle{
+    color: white;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.active{
+    font-weight: 600;
+}
+.footer{
+    margin-top: 10px;
+    background-color: #006aa5;
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+
+.search-section{
+    background-image: url(../images/tutor-background.jpg);
+    height: 40%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.search-section-text{
+    font-size: 30px;
+    margin-top: 10px;
+}
+.earning-potential, .pointers{
+    background-color: #edf9ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.pointers{
+    flex-direction: row;
+}
+.price{
+    margin: 20px;
+    font-size: 20px;
+    font-weight: 900;
+}
+.tutor-heading{
+    font-size: 25px;
+    font-weight: 600;
+    color: #806868;
+    text-align: center;
+}
+.tutor{
+    width: 100%;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../images/bluevector.jpg);
+    gap: 40px;
+    padding: 20px;
+}
+.row{
+    margin-top: 50px;
+}
+.card{
+    background-image: url(../images/tutor-background.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.card > img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -77px;
+    border-radius: 50%;
+}
+.card-body{
+    text-align: center;
+    margin: 50px 0px;
+}
+.card-footer{
+    width: 100%;
+    background-color: #6e9ecf;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.minimum, .maximum{
+    margin: 50px;
+    text-align: center;
+}
+
+.maximum{
+    border-left: 2px solid #3b8ebc;
+    padding-left: 60px;
+}
+.circular > img{
+    height: 60px;
+    width: 60px;
+    margin-bottom: 30px;
+}
+.circular:not(:first-child)::before{
+    border: 2px solid #68adff;
+    content: '';
+    margin-left: -1px;
+    position: absolute;
+    left:29px;
+    top:-34px;
+    height:36px;
+}
+.left-section{
+    width: 50%;
+}
+.right-section{
+    border:2px solid #3367AC;
+    width: 50%;
+    padding: 20px;
+    border-radius: 5px;
+    height: 400px;
+}
+.login-text, .signup-text{
+    color: #3367AC;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.signup-text{
+    margin-top: 5px;
+}
+.login-section{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    padding: 50px;
+    align-items: center;
+}
+.circular{
+    position: relative;
+}
+.circular > p{
+    position: absolute;
+    top:7px;
+    left:75px;
+    width:260px;
+    font-size: 25px;
+}
+.toggle-button1, .toggle-button2{
+    width:250px;
+    padding: 5px;
+    background-color: #337ab7;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #337ab7;
+}
+.toggle-button2{
+    background-color: white;
+    color: #337ab7;
+}
+.button-change{
+    display: flex;
+}
+.login, .signup{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    align-items: center;
+}
+.login > input, .signup > input{
+    margin: 15px;
+    width: 100%;
+}
+.signup > input{
+    margin: 10px;
+}
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #61C5FA;
+    border:1px solid #5AB0DB;
+}
+.login-button, .signup-button{
+    width: 250px;
+    margin: 50px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #337ab7;
+    border: 2px solid #337ab7;
+}
+.signup-button{
+    margin: 0px;
+}
+.earning-potential-text{
+    margin: 20px;
+    font-size: 25px;
+    font-weight: 600;
+}
+@media screen and (max-width: 900px) {
+    .login-section{
+        flex-direction: column;
+        padding: 50px 0px;
+    }
+    .left-section , .right-section, .login, .signup{
+        width: 100%;
+    }
+    .right-section{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 490px;
+    }
+    .button-change{
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+    }
+    .toggle-button1, .toggle-button2{
+        width: 100%;
+    }
+    .minimum, .maximum{
+        margin: 23px;
+    }
+}

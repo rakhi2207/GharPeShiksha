@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghar Pe Shikhsa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/tutor.css">
+    <script src="./javascript/tutor.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <img src="./assets/images/logo.png" class="logo">
+          <p class="logoTitle">Shiksha Ghar Pe</p>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" href="#">Tutor Section</a>
+              <a class="nav-link" href="#">Student Section</a>
+            </div>
+          </div>
+        </div>
+    </nav>
+    <div class="search-section">
+      <p class="search-section-text">Providing Home Tuition Opportunities
+       </p>
+       <div class="login-section">
+        <div class="left-section">
+            <div class="circular">
+                <img src="./assets/images/tutorSection1.webp">
+                <p>Become A Tutor</p>
+            </div>
+            <div class="circular">
+                <img src="./assets/images/tutorSection2.webp">
+                <p>Share your Knowledge</p>
+            </div>
+            <div class="circular">
+                <img src="./assets/images/share4.webp">
+                <p>Work Part Time</p>
+            </div>
+            <div class="circular">
+                <img src="./assets/images/money.webp">
+                <p>Become A Tutor</p>
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="button-change">
+                <button class="toggle-button1" onclick="moveToLogin()">Login to Your Profile</button>
+                <button class="toggle-button2" onclick="moveToSignup()">Register as a Tutor</button>
+            </div>
+            <div class="login">
+                <input type="text" placeholder="Phone Number">
+                <input type="password" placeholder="Password">
+                <button class="login-button">Login</button>
+                <p class="login-text" onclick="moveToSignup()">New to GharPeShiksha, Don't have an Account? Sign Up here!</p>
+            </div>
+            <div class="signup" style="display: none;">
+                <p>New to GharPeShiksha? Create Your Tutor Account.</p>
+                <input type="text" placeholder="Phone Number">
+                <input type="text" placeholder="Email Address">
+                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Confirm Password">
+                <button class="signup-button">Register Now</button>
+                <p class="signup-text" onclick="moveToLogin()">Already have an Account? Sign In here!</p>
+            </div>
+        </div>
+       </div>
+    </div>
+    <div class="earning-potential">
+        <p class="earning-potential-text">Earning Potential</p>
+        <div class="pointers">
+            <div class="minimum">
+                <p>Minimum</p>
+                <p class="price">Rs 10000+</p>
+                <p>per month @2hr/day</p>
+            </div>
+            <div class="maximum">
+                <p>Maximum</p>
+                <p class="price">Rs 25000+</p>
+                <p>per month @3-5hr/day</p>
+            </div>
+        </div>
+    </div>
+    <div class="tutor">
+        <p class="tutor-heading">Few of our best tutor</p>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+              <div class="card">
+                <img src="./assets/images/teacher1.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Shamsher Sir</h5>
+                  <p class="card-text">M.Sc in Mathematics</p>
+                  <p class="card-text">20 Yrs Experience</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">Contact Info</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="./assets/images/tutor3.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Smriti Saini</h5>
+                  <p class="card-text">B.A and LLB</p>
+                  <p class="card-text">3 Yrs Experience</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">Contact Info</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="./assets/images/teacher2.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Dharmendra Yadav</h5>
+                  <p class="card-text">B.Tech</p>
+                  <p class="card-text">15 Yrs Experience</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">Contact Info</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="./assets/images/tutor4.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Pragya gupta</h5>
+                  <p class="card-text">UGC</p>
+                  <p class="card-text">3 Yrs Experience</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">Contact Info</small>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="footer">
+        <p>
+			Copyright ©
+			<script>document.write(new Date().getFullYear());</script>
+			ShikshaGharPe | All Rights
+			Reserved
+		</p>
+    </div>
+</body>
+</html>
