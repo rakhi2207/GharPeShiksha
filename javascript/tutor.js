@@ -25,3 +25,9 @@ function moveToLogin(){
     loginButton.style.backgroundColor = "#337ab7";
     loginButton.style.color = "white";
 }
+
+function contactTutor(){
+    console.log('contactTutor');
+    window.location.href="../student.html"
+    window.alert("Please Login As Student");
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghar Pe Shikhsa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/student.css">
+    <link rel="icon" type="image/png" href="./assets/images/logo.png" />
+    <script src="./javascript/tutor.js"></script>
+    <script src="./javascript/student.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <img src="./assets/images/logo.png" class="logo">
+          <a href="./index.html" class="logoTitle">Shiksha Ghar Pe</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="./tutor.html">Tutor Section</a>
+              <a class="nav-link active" href="#">Student Section</a>
+            </div>
+          </div>
+        </div>
+    </nav>
+    <div class="search-section">
+      <p class="search-section-text">Find Your Best Tutor
+       </p>
+       <div class="login-section">
+        <div class="left-section">
+            <div class="circular">
+                <img src="./assets/images/tutorSection1.webp">
+                <p>Enroll Now</p>
+            </div>
+            <div class="circular">
+                <img src="./assets/images/tutorSection2.webp">
+                <p>Share your Requirements</p>
+            </div>
+            <div class="circular">
+                <img src="./assets/images/share4.webp">
+                <p>Search From Our Best Tutor</p>
+            </div>
+            <div class="circular">
+                <img src="./assets/images/money.webp">
+                <p>Get Free Trail Classes for 5 Days</p>
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="button-change">
+                <button class="toggle-button1" onclick="moveToLogin()">Login to Your Profile</button>
+                <button class="toggle-button2" onclick="moveToSignup()">Complete Your Profile</button>
+            </div>
+            <div class="login">
+                <input type="text" placeholder="Phone Number">
+                <input type="password" placeholder="Password">
+                <button class="login-button">Login</button>
+                <p class="login-text" onclick="moveToSignup()">New to GharPeShiksha, Complete Your Profile</p>
+            </div>
+            <div class="signup" style="display: none;">
+                <p>New to GharPeShiksha? Complete Your Profile</p>
+                <input type="text" placeholder="Phone Number">
+                <input type="text" placeholder="Email Address">
+                <input type="password" placeholder="Password">
+                <div class="select-subjects">
+                 <div class = "dropdown" onclick = "showOptions('class')">
+                    <p id="showClass">Select Class</p>
+                    <div id = "class">
+                      <p onclick = "getClass('I')" value="I">I</p>
+                      <p onclick = "getClass('II')" value="II">II</p>
+                      <p onclick = "getClass('III')" value="III">III</p>
+                      <p onclick = "getClass('IV')" value="IV">IV</p>
+                      <p onclick = "getClass('V')" value="V">V</p>
+                      <p onclick = "getClass('VI')" value="VI">VI</p>                    
+                      <p onclick = "getClass('VII')" value="VII">VII</p>                    
+                      <p onclick = "getClass('VIII')" value="VIII">VIII</p>                    
+                      <p onclick = "getClass('IX')" value="IX">IX</p>                    
+                      <p onclick = "getClass('X')" value="X">X</p>                    
+                    </div>
+                  </div>
+                </div>
+                <div class="select-subjects">
+                  <div class = "dropdown dropdown-subject" onclick = "showOptions('subjects')">
+                    <p id="subjectList">Select Subjects</p>
+                 <div id = "subjects">
+                    <label for = "one">
+                       <input type = "checkbox" id = "one" value = "English"  onclick="getSubjects('English')" />
+                          English
+                    </label>
+                    <label for = "two">
+                       <input type = "checkbox" id = "two" value = "Hindi" onclick="getSubjects('Hindi')"/>
+                          Hindi
+                    </label>
+                    <label for = "three">
+                       <input type = "checkbox" id = "three" value = "Maths" onclick="getSubjects('Maths')" />
+                          Maths
+                    </label>
+                    <label for = "four">
+                       <input type = "checkbox" id = "four" value = "Physics" onclick="getSubjects('Physics')"/>
+                          Physics
+                    </label>
+                    <label for = "five" >
+                       <input type = "checkbox" id = "five" value = "Chemistry" onclick="getSubjects('Chemistry')"/>
+                          Chemistry
+                    </label>
+                    <label for = "six">
+                       <input type = "checkbox" id = "six" value = "Social Science" onclick="getSubjects('Social Science')"/>
+                          Social Science
+                    </label>
+                    <label for = "seven">
+                       <input type = "checkbox" id = "seven" value = "General knowledge" onclick="getSubjects('General knowledge')"3/>
+                          General knowledge
+                    </label>
+                    <label for = "eight">
+                       <input type = "checkbox" id = "eight" value = "Computer Science" onclick="getSubjects('Computer Science')"3/>
+                          Computer Science
+                    </label>
+                    <label for = "nine">
+                       <input type = "checkbox" id = "nine" value = "Accounts" onclick="getSubjects('Accounts')"3/>
+                          Accounts
+                    </label>
+                    <label for = "ten">
+                       <input type = "checkbox" id = "ten" value = "Geography" onclick="getSubjects('Geography')"3/>
+                          Geography
+                    </label>
+                    <label for = "eleven">
+                       <input type = "checkbox" id = "eleven" value = "Geography" onclick="getSubjects('Geography')"3/>
+                          French
+                    </label>
+                    <label for = "twelve">
+                       <input type = "checkbox" id = "twelve" value = "Geography" onclick="getSubjects('Geography')"3/>
+                          Political Science
+                    </label>
+                    <label for = "thirteen">
+                       <input type = "checkbox" id = "thirteen" value = "Economics" onclick="getSubjects('Economics')"3/>
+                       Economics
+                    </label>
+                 </div>
+                </div>
+                </div>
+                <div class="select-mode">
+                  <div class = "dropdown" onclick = "showOptions('mode')">
+                     <p id="showMode">Select Mode</p>
+                     <div id = "mode">
+                       <p onclick = "getMode('Online Mode')" value="I">Online Mode</p>
+                       <p onclick = "getMode('Offline Mode')" value="II">Offline Mode</p>
+                       <p onclick = "getMode('Video Mode')" value="III">Video Mode</p>                 
+                     </div>
+                   </div>
+                 </div>
+                 <input type="number" min="1" max="7" placeholder="No of classes in week">
+                 <input type="number" placeholder="Budget for month in Rs">
+                <button class="signup-button">Register Now</button>
+                <p class="signup-text" onclick="moveToLogin()">Already have an Account? Sign In here!</p>
+            </div>
+        </div>
+       </div>
+    </div>
+    <div class="tutor">
+        <p class="tutor-heading">Few of our best tutor</p>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+              <div class="card">
+                <img src="./assets/images/teacher1.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Shamsher Sir</h5>
+                  <p class="card-text">M.Sc in Mathematics</p>
+                  <p class="card-text">20 Yrs Experience</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary" onclick="contactTutor()">Contact Info</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="./assets/images/tutor3.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Smriti Saini</h5>
+                  <p class="card-text">B.A and LLB</p>
+                  <p class="card-text">3 Yrs Experience</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary" onclick="contactTutor()">Contact Info</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="./assets/images/teacher2.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Dharmendra Yadav</h5>
+                  <p class="card-text">B.Tech</p>
+                  <p class="card-text">15 Yrs Experience</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary" onclick="contactTutor()">Contact Info</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="./assets/images/tutor4.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Pragya gupta</h5>
+                  <p class="card-text">UGC</p>
+                  <p class="card-text">3 Yrs Experience</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary" onclick="contactTutor()">Contact Info</small>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="footer">
+        <p>
+			Copyright ©
+			<script>document.write(new Date().getFullYear());</script>
+			ShikshaGharPe | All Rights
+			Reserved
+		</p>
+    </div>
+</body>
+</html>
