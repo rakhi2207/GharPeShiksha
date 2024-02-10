@@ -1,33 +1,37 @@
-function moveToSignup() {
-    const login = document.getElementsByClassName("login")[0];
-    const signup = document.getElementsByClassName("signup")[0];
-    const loginButton = document.getElementsByClassName("toggle-button1")[0];
-    const signupButton = document.getElementsByClassName("toggle-button2")[0];
-    login.style.display = "none";
-    signup.style.display = "flex";
-    loginButton.style.backgroundColor = "white";
-    loginButton.style.borderColor = "#337ab7";
-    loginButton.style.color = "#337ab7";
-    signupButton.style.backgroundColor = "#337ab7";
-    signupButton.style.color = "white";
+function hideDropDown(e) {
+    const dropdown = document.querySelector(".dropdown");
+    const dropdownSubject = document.querySelector(".dropdown-subject");
+    const classSelect = document.querySelector("#class");
+    const subject = document.querySelector("#subjects");
+    const mode = document.querySelector(".select-mode");
+    const drodownMode = document.querySelector("#mode");
+    if (dropdown && !dropdown.contains(e.target)) {
+        classSelect.style.display = "none";
+        showCheckBoxes = true;
+    }
+    if(dropdownSubject && !dropdownSubject.contains(e.target)){
+        subject.style.display = "none";
+        showSubjects = true;
+    }
+    if(mode && !mode.contains(e.target)){
+        drodownMode.style.display = "none";
+        showMode = true;
+    }
+    const showSubjectsData = document.getElementById("subjectList");
+    if(subjectList.size == 0){
+        subjectList.add("Select Subjects");
+        showSubjectsData.style.color = "grey";
+    } else if(subjectList.size > 0 && !subjectList.has("Select Subjects")){
+        showSubjectsData.style.color = "black";       
+    }
+
+    if(subjectList.size > 4){
+        showSubjectsData.style.fontSize = "xx-small";
+    }else{
+        showSubjectsData.style.fontSize = "15px";
+    }
+    const data = Array.from(subjectList).join(", ")
+    showSubjectsData.innerText = data;
 }
 
-function moveToLogin(){
-    const login = document.getElementsByClassName("login")[0];
-    const signup = document.getElementsByClassName("signup")[0];
-    const loginButton = document.getElementsByClassName("toggle-button1")[0];
-    const signupButton = document.getElementsByClassName("toggle-button2")[0];
-    login.style.display = "flex";
-    signup.style.display = "none";
-    signupButton.style.backgroundColor = "white";
-    signupButton.style.borderColor = "#337ab7";
-    signupButton.style.color = "#337ab7";
-    loginButton.style.backgroundColor = "#337ab7";
-    loginButton.style.color = "white";
-}
-
-function contactTutor(){
-    console.log('contactTutor');
-    window.location.href="../student.html"
-    window.alert("Please Login As Student");
-}
+window.addEventListener("click", hideDropDown);

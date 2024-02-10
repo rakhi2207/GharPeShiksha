@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="./assets/images/logo.png" />
+    <script src="./javascript/CommonStudentTutor.js"></script>
+    <script src="./javascript/studentDashboard.js"></script>
+    <link rel="stylesheet" href="./assets/css/studentDashboard.css">
+</head>
+<body>
+    <nav class="nav-list">
+        <div class="container-fluid">
+            <div class="first-segment">
+                <img src="./assets/images/logo.png" class="logo">
+                <a href="#" class="logoTitle">Shiksha Ghar Pe</a>      
+            </div>
+            <div  id="navbarNavAltMarkup">
+            <div class="navbar-items" onClick="openAccountSettings()">
+             <img src="./assets/images/myaccount.jpg" class="user-logo"> 
+             <span class="caret"></span>
+             <div class="account-setting">
+                <p class="account-text setting" onclick="changeDashboard('passwordChange')">
+                  <img class="setting-img" src="./assets/images/settings.png">
+                  Settings
+                </p>
+                <p class="account-text">
+                  <img  class="setting-img" src="./assets/images/turn-off.png">
+                  Logout
+                </p>
+             </div>
+            </div>
+          </div>
+        </div>
+    </nav>
+    <div class="data-collection">
+        <div class="card mb-3 student-card active" onclick="changeDashboard('posted')">
+            <div class="row g-0">
+              <div class="col-md-4 content">
+                <img src="./assets/images/requirements.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8 student-data">
+                <div class="card-body posted">
+                  <p class="card-title">0 Requirements Posted</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="card mb-3 student-card active" onclick="changeDashboard('responded')">
+            <div class="row g-0">
+              <div class="col-md-4 content">
+                <img src="./assets/images/match.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8 student-data">
+                <div class="card-body">
+                  <p class="card-title">0 Matching Tutors</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="card mb-3 student-card active" onclick="changeDashboard('responded')">
+            <div class="row g-0">
+              <div class="col-md-4 content">
+                <img src="./assets/images/responded.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8 student-data">
+                <div class="card-body">
+                  <p class="card-title">0 Responded Tutors</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="card mb-3 student-card active" onclick="changeDashboard('newRequirement')">
+            <div class="row g-0">
+              <div class="col-md-4 content">
+                <img src="./assets/images/postnew.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8 student-data">
+                <div class="card-body">
+                  <p class="card-title">Post New requirement</p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="tutors-list">
+        <p class="tutors-list-title">Based on your recent requirement we found the following tutors:</p>
+        <div class="tutors-data">
+          <div class="card mb-3">
+            <div class="card-body tutor-info">
+              <h5 class="card-title tutor">Online Tutor for french, class X</h5>
+              <p class="card-text mode-tutor"><small class="text-body-secondary">Posted More than 1 day ago | Availability For: [Home Tuition at Student's Home]</small></p>
+              <p class="info">
+                <img class="mock-img" src="./assets/images/icons8-location-48.png">
+                Area: <span class="details">45 Gurugram(23.27 KM away)</span>
+              </p>
+              <p class="info">
+                <img class="mock-img" src="./assets/images/icons8-experience-48.png">
+                Experience: <span class="details"> 10 Years</span>
+              </p>
+              <p class="info">
+                <img class="mock-img" src="./assets/images/icons8-education-16.png">
+                Graduation: <span class="details">B.Sc Mathematics</span>
+              </p>
+              <div class="applying-button">
+                <button class="apply-tutor">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="post-requirement">
+      <div class="require-block">
+        <p class="require-title">Fill Your Requirements For Tutor</p>
+      </div>
+      <div class="select-subjects">
+        <div class = "dropdown" onclick = "showOptions('class')">
+           <p id="showClass">Select Class</p>
+           <div id = "class">
+             <p onclick = "getClass('I')" value="I">I</p>
+             <p onclick = "getClass('II')" value="II">II</p>
+             <p onclick = "getClass('III')" value="III">III</p>
+             <p onclick = "getClass('IV')" value="IV">IV</p>
+             <p onclick = "getClass('V')" value="V">V</p>
+             <p onclick = "getClass('VI')" value="VI">VI</p>                    
+             <p onclick = "getClass('VII')" value="VII">VII</p>                    
+             <p onclick = "getClass('VIII')" value="VIII">VIII</p>                    
+             <p onclick = "getClass('IX')" value="IX">IX</p>                    
+             <p onclick = "getClass('X')" value="X">X</p>                    
+           </div>
+         </div>
+       </div>
+       <div class="select-subjects">
+         <div class = "dropdown dropdown-subject" onclick = "showOptions('subjects')">
+           <p id="subjectList">Select Subjects</p>
+        <div id = "subjects">
+           <label for = "one">
+              <input type = "checkbox" id = "one" value = "English"  onclick="getSubjects('English')" />
+                 English
+           </label>
+           <label for = "two">
+              <input type = "checkbox" id = "two" value = "Hindi" onclick="getSubjects('Hindi')"/>
+                 Hindi
+           </label>
+           <label for = "three">
+              <input type = "checkbox" id = "three" value = "Maths" onclick="getSubjects('Maths')" />
+                 Maths
+           </label>
+           <label for = "four">
+              <input type = "checkbox" id = "four" value = "Physics" onclick="getSubjects('Physics')"/>
+                 Physics
+           </label>
+           <label for = "five" >
+              <input type = "checkbox" id = "five" value = "Chemistry" onclick="getSubjects('Chemistry')"/>
+                 Chemistry
+           </label>
+           <label for = "six">
+              <input type = "checkbox" id = "six" value = "Social Science" onclick="getSubjects('Social Science')"/>
+                 Social Science
+           </label>
+           <label for = "seven">
+              <input type = "checkbox" id = "seven" value = "General knowledge" onclick="getSubjects('General knowledge')"3/>
+                 General knowledge
+           </label>
+           <label for = "eight">
+              <input type = "checkbox" id = "eight" value = "Computer Science" onclick="getSubjects('Computer Science')"3/>
+                 Computer Science
+           </label>
+           <label for = "nine">
+              <input type = "checkbox" id = "nine" value = "Accounts" onclick="getSubjects('Accounts')"3/>
+                 Accounts
+           </label>
+           <label for = "ten">
+              <input type = "checkbox" id = "ten" value = "Geography" onclick="getSubjects('Geography')"3/>
+                 Geography
+           </label>
+           <label for = "eleven">
+              <input type = "checkbox" id = "eleven" value = "Geography" onclick="getSubjects('Geography')"3/>
+                 French
+           </label>
+           <label for = "twelve">
+              <input type = "checkbox" id = "twelve" value = "Geography" onclick="getSubjects('Geography')"3/>
+                 Political Science
+           </label>
+           <label for = "thirteen">
+              <input type = "checkbox" id = "thirteen" value = "Economics" onclick="getSubjects('Economics')"3/>
+              Economics
+           </label>
+        </div>
+       </div>
+       </div>
+       <div class="select-mode">
+         <div class = "dropdown" onclick = "showOptions('mode')">
+            <p id="showMode">Select Mode</p>
+            <div id = "mode">
+              <p onclick = "getMode('Online Mode')" value="I">Online Mode</p>
+              <p onclick = "getMode('Offline Mode')" value="II">Offline Mode</p>
+              <p onclick = "getMode('Video Mode')" value="III">Video Mode</p>                 
+            </div>
+          </div>
+       </div>
+       <input type="text" placeholder="Residential Address">
+        <input type="number" min="1" max="7" placeholder="No of classes in week">
+        <input type="number" placeholder="Budget for month in Rs">
+        <div class="posting-button">
+          <button class="apply-tutor">Post</button>
+        </div>
+    </div>
+    <div class="applied-posts">
+      <p class="tutors-list-title">Your Requirements</p>
+      <div class="tutors-data">
+        <div class="card mb-3">
+          <div class="card-body tutor-info">
+            <h5 class="card-title tutor">Online Tutor for french, class X</h5>
+            <p class="card-text mode-tutor"><small class="text-body-secondary">Posted More than 1 day ago | Availability For: [Home Tuition at Student's Home]</small></p>
+            <p class="info">
+              <img class="mock-img" src="./assets/images/icons8-location-48.png">
+              Area: <span class="details">45 Gurugram(23.27 KM away)</span>
+            </p>
+            <p class="info">
+              <img class="mock-img" src="./assets/images/icons8-budget-48.png">
+              Budget: <span class="details"> 2000 per month</span>
+            </p>
+            <p class="info">
+              <img class="mock-img" src="./assets/images/icons8-class-100.png">
+              Classes: <span class="details">1 class per week</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="password-change">
+      <input type="text" placeholder="Old Password">
+      <input type="text" placeholder="New Password">
+      <input type="text" placeholder="Confirm New Password">
+      <button class="apply-tutor">Submit</button>
+    </div>
+</body>
+</html>

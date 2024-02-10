@@ -1,0 +1,234 @@
+p{
+    margin: 0px;
+}
+.collapse{
+    justify-content: right;
+}
+.nav-link{
+    margin-left: 20px;
+    margin-right: 20px;
+    color: white !important;
+}
+
+.logo{
+    height: 50px;
+    background-color: white;
+}
+.content{
+    width:20%;
+    background-color: #e8e8e8;
+    height:59px;
+}
+.student-data{
+    width:80%;
+}
+.student-card{
+    width: 250px;
+    height:60px;
+    cursor: pointer;
+}
+.container-fluid, .navbar-items{
+    display: flex;
+    position: relative;
+}
+.navbar-items{
+    cursor: pointer;
+}
+.container-fluid{
+    padding: 10px;
+    justify-content: space-between;
+}
+.card-title{
+    color: rgb(51, 122, 183);
+}
+.tutors-list{
+    display: none;
+}
+.tutors-list-title{
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+.logoTitle{
+    color: #326cb5;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.user-logo{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+.caret{
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    margin: auto;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.data-collection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-image: url(../images/bluevector.jpg);
+    padding-top: 20px;
+}
+.tutor{
+    color:black;
+    text-align: center;
+    font-size: 25px;
+}
+.mode-tutor, .require-block, .posting-button{
+    text-align: center;
+}
+.posting-button{
+    margin: 10px;
+}
+.mock-img{
+    width: 20px;
+    height: 20px;
+}
+.tutors-data{
+    margin: 30px;
+}
+
+.info{
+    margin: 20px;
+    font-size: 25px;
+    font-weight: bolder;
+}
+.details{
+    font-size: 20px;
+    font-weight: lighter;
+}
+.applying-button{
+    text-align: center;
+}
+.apply-tutor{
+    border-radius: 5px;
+    background-color: #2f87b8;
+    color: white;
+    border: none;
+    width: 190px;
+    padding: 5px;
+}
+.dropdown {
+    width: 95%;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid grey;
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+ }
+ .dropdown > p{
+    font-size: 15px;
+    color: gray
+ }
+ .select-subjects{
+    position: relative;
+ }
+ .select-class,.select-subjects, .select-mode{
+    width: 100%;
+ }
+ #class > p{
+    cursor: pointer;
+ }
+ #class p:hover, #subjects label:hover, #mode p:hover{
+    background-color: rgb(214, 214, 214);
+    cursor: pointer;
+ }
+ #class, #subjects, #mode{
+    margin: 0.5rem 0;
+    width: 12rem;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2;
+    top:23px;
+    width: 100%;
+    border: 1px solid grey;
+    background-color: white;
+    overflow-y: scroll;
+    max-height:150px;
+    left:0px;
+ }
+ label {
+    padding: 0.2rem;
+ }
+ .post-requirement{
+    width: 60%;
+    border: 1px solid gray;
+    margin: auto;
+    margin-top: 30px;
+    box-shadow: 10px 5px 19px #326cb5;
+    padding: 10px;
+ }
+ .posted{
+    padding: 14px;
+ }
+ .applied-posts{
+    display: none;
+ }
+ .post-requirement > input{
+    margin: 7px 0px;
+    width: 95%;
+}
+.require-title{
+    font-size: 25px;
+    font-weight: bold;
+}
+.account-setting{
+    position: absolute;
+    border: 1px solid gray;
+    top:40px;
+    background-color: white;
+    right: 0px;
+    z-index: 2;
+    display: none;
+}
+.setting{
+    border-bottom: 1px solid black;
+    width: 150px;
+}
+.setting-img{
+    width: 20px;
+    height:20px;
+}
+.account-text{
+    padding: 10px;
+}
+.password-change{
+    display: none;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+    align-items: center;
+}
+.password-change > input{
+    width: 60%;
+    margin: 15px;
+
+}
+@media screen and (max-width: 900px) {
+    .data-collection{
+        flex-direction: column;
+    }
+    .post-requirement{
+        width: 90%;
+    }
+    .password-change{
+        width: 95%;
+    }
+    .password-change > input {
+        width: 77%;
+    }
+}
