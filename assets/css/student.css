@@ -118,7 +118,7 @@ p{
     width: 50%;
     padding: 20px;
     border-radius: 5px;
-    height: 408px;
+    height: 446px;
 }
 .login-text, .signup-text{
     color: #3367AC;
@@ -180,7 +180,7 @@ input[type="text"]:focus, input[type="password"]:focus, .select-class:focus {
 }
 .login-button, .signup-button{
     width: 250px;
-    margin: 50px;
+    margin: 30px;
     padding: 5px;
     border-radius: 5px;
     color: white;
@@ -203,7 +203,7 @@ input[type="text"]:focus, input[type="password"]:focus, .select-class:focus {
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 408px;
+        height: 458px;
     }
     .button-change{
         flex-direction: column;

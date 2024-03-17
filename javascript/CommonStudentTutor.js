@@ -34,6 +34,7 @@ function showOptions(optionType) {
    let options =
       document.getElementById(`${optionType}`);
    if (showCheckBoxes && optionType === "class") {
+      hidePostError('classData');
       options.style.display = "flex";
       showCheckBoxes = !showCheckBoxes;
    } else if(optionType === "class") {
@@ -42,6 +43,7 @@ function showOptions(optionType) {
    }
    
    if (showSubjects && optionType === "subjects") {
+      hidePostError('subjectData');
       options.style.display = "flex";
       showSubjects = !showSubjects;
    } else if(optionType === "subjects") {
@@ -50,6 +52,7 @@ function showOptions(optionType) {
    }
 
    if (showMode && optionType === "mode") {
+      hidePostError('modeData');
       options.style.display = "flex";
       showMode = !showMode;
    } else if(optionType === "mode") {

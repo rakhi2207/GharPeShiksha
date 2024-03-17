@@ -11,7 +11,7 @@
     <script src="./javascript/student.js"></script>
     <script src="./javascript/CommonStudentTutor.js"></script>
 </head>
-<body>
+<body onload="checkUserAlreadyLoggedIn()">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <img src="./assets/images/logo.png" class="logo">
@@ -55,17 +55,23 @@
                 <button class="toggle-button2" onclick="moveToSignup()">Complete Your Profile</button>
             </div>
             <div class="login">
-                <input type="text" placeholder="Phone Number">
-                <input type="password" placeholder="Password">
-                <button class="login-button">Login</button>
+                <p id='signupSuccess' style="display: none;">Please Login. Signup Successfull</p>
+                <input type="text"  id="loginph" placeholder="Phone Number" onclick="hideError('loginerror')">
+                <input type="password" id="loginpw" placeholder="Password" onclick="hideError('loginerror')">
+                <p id="loginerror" style="display: none;">Incorrect Phone Number And Password</p>
+                <button class="login-button" onclick="loginStudent()">Login</button>
                 <p class="login-text" onclick="moveToSignup()">New to GharPeShiksha, Complete Your Profile</p>
             </div>
             <div class="signup" style="display: none;">
                 <p>New to GharPeShiksha? Complete Your Profile</p>
-                <input type="text" placeholder="Phone Number">
-                <input type="text" placeholder="Email Address">
-                <input type="password" placeholder="Password">
-                <button class="signup-button">Register Now</button>
+                <input type="text" id="phoneNumber" placeholder="Phone Number" onclick="hideError('errorPhNum')">
+                <p id="errorPhNum" style="display: none;">Incorrect Phone Number</p>
+                <input type="email" id="email" placeholder="Email Address" onclick="hideError('errorEmail')">
+                <p id="errorEmail" style="display: none;" >Incorrect Email</p>
+                <input type="password" id="password" placeholder="Password" onclick="hideError('errorPass')">
+                <p id="errorPass" style="display: none;" >Incorrect Password</p>
+                <p id="errorUser" style="display: none;" >User Already Exist</p>
+                <button class="signup-button" onclick="signupStudent()">Register Now</button>
                 <p class="signup-text" onclick="moveToLogin()">Already have an Account? Sign In here!</p>
             </div>
         </div>

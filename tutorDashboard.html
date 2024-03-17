@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="./assets/images/logo.png" />
+    <link rel="stylesheet" href="./assets/css/studentDashboard.css">
+    <link rel="stylesheet" href="./assets/css/tutorDashboard.css">
+    <script src="./javascript/dashboardCommon.js"></script>
+    <script src="./javascript/tutorDashborad.js"></script>
+</head>
+<body>
+    <nav class="nav-list">
+        <div class="container-fluid">
+            <div class="first-segment">
+                <img src="./assets/images/logo.png" class="logo">
+                <a href="#" class="logoTitle">Shiksha Ghar Pe</a>      
+            </div>
+            <div  id="navbarNavAltMarkup">
+            <div class="navbar-items" onClick="openAccountSettings()">
+             <img src="./assets/images/myaccount.jpg" class="user-logo"> 
+             <span class="caret"></span>
+             <div class="account-setting">
+                <p class="account-text setting" onclick="changeDashboard('passwordChange')">
+                  <img class="setting-img" src="./assets/images/settings.png">
+                  Settings
+                </p>
+                <p class="account-text">
+                  <img  class="setting-img" src="./assets/images/turn-off.png">
+                  Logout
+                </p>
+             </div>
+            </div>
+          </div>
+        </div>
+    </nav>
+    <div class="data-collection">
+        <div class="card mb-3 student-card postedReq" onclick="changeDashboard('postedReq')">
+            <div class="row g-0">
+              <div class="col-md-4 content">
+                <img src="./assets/images/requirements.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8 student-data">
+                <div class="card-body">
+                  <p class="card-title">0 Classes Applied</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="card mb-3 student-card responded" onclick="changeDashboard('responded')">
+            <div class="row g-0">
+              <div class="col-md-4 content">
+                <img src="./assets/images/responded.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8 student-data">
+                <div class="card-body">
+                  <p class="card-title">0 Classes Available</p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="tutors-list">
+      <p class="tutors-list-title">Based on your recent requirement we found the following tutors:</p>
+      <div class="tutors-data">
+        <div class="card mb-3">
+          <div class="card-body tutor-info">
+            <h5 class="card-title tutor">Online Tutor for french, class X</h5>
+            <p class="card-text mode-tutor"><small class="text-body-secondary">Posted More than 1 day ago | Availability For: [Home Tuition at Student's Home]</small></p>
+            <p class="info">
+              <img class="mock-img" src="./assets/images/icons8-location-48.png">
+              Area: <span class="details">45 Gurugram(23.27 KM away)</span>
+            </p>
+            <p class="info">
+              <img class="mock-img" src="./assets/images/icons8-experience-48.png">
+              Experience: <span class="details"> 10 Years</span>
+            </p>
+            <p class="info">
+              <img class="mock-img" src="./assets/images/icons8-education-16.png">
+              Graduation: <span class="details">B.Sc Mathematics</span>
+            </p>
+            <div class="applying-button">
+              <button class="apply-tutor">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+    <div class="applied-posts">
+      <p class="tutors-list-title">Your Requirements</p>
+      <div class="tutors-data">
+        <div class="card mb-3">
+          <div class="card-body tutor-info">
+            <h5 class="card-title tutor">Online Tutor for french, class X</h5>
+            <p class="card-text mode-tutor"><small class="text-body-secondary">Posted More than 1 day ago | Availability For: [Home Tuition at Student's Home]</small></p>
+            <p class="info">
+              <img class="mock-img" src="./assets/images/icons8-location-48.png">
+              Area: <span class="details">45 Gurugram(23.27 KM away)</span>
+            </p>
+            <p class="info">
+              <img class="mock-img" src="./assets/images/icons8-budget-48.png">
+              Budget: <span class="details"> 2000 per month</span>
+            </p>
+            <p class="info">
+              <img class="mock-img" src="./assets/images/icons8-class-100.png">
+              Classes: <span class="details">1 class per week</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="password-change">
+      <input type="text" placeholder="Old Password">
+      <input type="text" placeholder="New Password">
+      <input type="text" placeholder="Confirm New Password">
+      <button class="apply-tutor">Submit</button>
+    </div>
+</body>
+</html>
