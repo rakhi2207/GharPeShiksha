@@ -29,7 +29,7 @@
                   <img class="setting-img" src="./assets/images/settings.png">
                   Settings
                 </p>
-                <p class="account-text">
+                <p class="account-text" onclick="logout()">
                   <img  class="setting-img" src="./assets/images/turn-off.png">
                   Logout
                 </p>
@@ -46,7 +46,7 @@
               </div>
               <div class="col-md-8 student-data">
                 <div class="card-body posted">
-                  <p class="card-title">0 Requirements Posted</p>
+                  <p class="card-title" id="postedReqCount"></p>
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@
               </div>
               <div class="col-md-8 student-data">
                 <div class="card-body">
-                  <p class="card-title">0 Matching Tutors</p>
+                  <p class="card-title" id="matchTutorCount"></p>
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@
               </div>
               <div class="col-md-8 student-data">
                 <div class="card-body">
-                  <p class="card-title">0 Responded Tutors</p>
+                  <p class="card-title" id="respondedTutorCount"></p>
                 </div>
               </div>
             </div>
@@ -89,6 +89,8 @@
         </div>
     </div>
     <div class="tutors-list">
+    </div>
+    <div class="applied-tutors-list">
     </div>
     <div class="post-requirement">
       <div class="require-block">
@@ -190,11 +192,13 @@
     <div class="applied-posts">
     </div>
     <div class="password-change">
-      <input type="text" id="oldpwd" placeholder="Old Password">
-      <p>Wrong Old Password</p>
-      <input type="text" id="newpwd" placeholder="New Password">
-      <input type="text" id="cnfnewpwd" placeholder="Confirm New Password">
-      <button class="apply-tutor">Submit</button>
+      <p  style="display: none;" id="pwdupd">Password Updated Successfully</p>
+      <input type="text" id="oldpwd" placeholder="Old Password" onclick="hideError('oldpwder')">
+      <p style="display: none;" id="oldpwder">Wrong Old Password</p>
+      <input type="text" id="newpwd" placeholder="New Password" onclick="hideError('newpwder')">
+      <input type="text" id="cnfnewpwd" placeholder="Confirm New Password" onclick="hideError('newpwder')">
+      <p style="display: none;" id="newpwder" >Password do not match</p>
+      <button class="apply-tutor" onclick="resetPassword()">Submit</button>
     </div>
 </body>
 </html>

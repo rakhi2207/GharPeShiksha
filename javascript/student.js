@@ -1,8 +1,6 @@
 const baseurl = 'http://localhost:5000';
 let studentAppliedTutorPost = {};
 async function postData(url = "", data = {}, token) {
-    console.log(url);
-    console.log(data);
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -91,12 +89,21 @@ function showError(field){
     ephnum.style.display = 'block'
     ephnum.style.color = 'red'
 }
+function showSuccessError(field){
+    const ephnum = document.getElementById(field);
+    ephnum.style.display = 'block'
+    ephnum.style.color = '	#32CD32'
+}
 
 function hideError(field){
     const ephnum = document.getElementById(field);
-    ephnum.style.display = 'none'
+    if(ephnum){
+        ephnum.style.display = 'none'
+    }
     const user = document.getElementById('errorUser');
-    user.style.display = 'none'
+    if(user){
+        user.style.display = 'none';
+    }
 }
 
 function signupError(phoneNumber, email, password){
@@ -136,12 +143,12 @@ function loginError(phoneNumber, password){
 }
 
 async function fetchPostApplied(token){
-    console.log('fetchPostApplied')
     const url = `${baseurl}/student/postApplied`;
     try{
         studentAppliedTutorPost = await getData(url, {
             Authorization: `Bearer ${token}`
         })
+        console.log('inside', studentAppliedTutorPost);
         return studentAppliedTutorPost;
     }catch (error){
         console.log(error);
@@ -208,8 +215,9 @@ async function applyforTutor(event){
     }
 }
 
-function createPostTemplate(post, isMatchedTutorPage , id, isStudentAlreadyApplied){
-    const parentClass = isMatchedTutorPage ? 'tutors-list' : 'applied-posts';
+function createPostTemplate(post, isMatchedTutorPage , id, isStudentAlreadyApplied, issAppliedTutorPage){
+    let parentClass = isMatchedTutorPage ? 'tutors-list' : 'applied-posts';
+    parentClass = issAppliedTutorPage ? 'applied-tutors-list' : parentClass;
     const parent = document.getElementsByClassName(parentClass)[0];
     const firstDiv = document.createElement('div');
     firstDiv.classList.add('tutors-data');
@@ -286,20 +294,6 @@ function appendTutorsHeading(data){
     return p;
 }
 
-async function listPostAppliedByStudent(data){
-    const response = await data.json();
-    studentAppliedTutorPost = response;
-    console.log('check', studentAppliedTutorPost);
-    const posts = response.data;
-    const parent = document.getElementsByClassName('applied-posts')[0];
-    parent.innerHTML = '';
-    parent.appendChild(appendTutorsHeading('Your Requirements'));
-    for(let post of posts){
-        createPostTemplate(post, false,0, false);
-    }
-    console.log(response);
-}   
-
 function getToken(){
     const token = localStorage.getItem('token');
     return {
@@ -311,7 +305,6 @@ function resetTutorPostForm(classSelected, subjects, mode, address , noOfClass, 
     const subjectSelector = ['one', 'two', 'three','four', 'five', 'six', 'seven','eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen'];
     for(let subject of subjectSelector){
         const subjectMarked = document.getElementById(subject);
-        console.log(subjectMarked);
         subjectMarked.checked = false;
     }
     classSelected.innerText = 'Select Class';
@@ -345,7 +338,6 @@ async function applyTutorPost(){
                 noOfClasses: noOfClass.value,
                 budget: budget.value,
             }
-            console.log('post data', data);
             const url = `${baseurl}/student/studentTutorRequirement`;
             const response = await postData(url, data, getToken());
             if(response.status === statusCode.ok){
@@ -402,6 +394,42 @@ function checkTutorPostData(classSelected, subjects, mode, address, noOfClass, b
     return isDataCorrect;
 }
 
-function resetPassword(){
-    
+function checkStudentChangePasswordData(oldp, newpwd, cnfnewpwd){
+    let isDataCorrect = true;
+    if(oldp.length < 1){
+        showError('oldpwder');
+        isDataCorrect = false;
+    }
+    if(newpwd.length < 1 || cnfnewpwd.length < 1 || newpwd !== cnfnewpwd){
+        showError('newpwder');
+        isDataCorrect = false;
+    }
+    return isDataCorrect;
+}
+
+function resetPasswordField(oldp, newpwd, cnfnewpwd){
+    oldp.value = '';
+    newpwd.value = '';
+    cnfnewpwd.value = '';
+}
+async function resetPassword(){
+    const oldp = document.getElementById('oldpwd');
+    const newpwd = document.getElementById('newpwd');
+    const cnfnewpwd = document.getElementById('cnfnewpwd');
+    const isDataCorrect = checkStudentChangePasswordData(oldp.value.trim(), newpwd.value.trim(), cnfnewpwd.value.trim());
+    if(isDataCorrect){
+        const url = `${baseurl}/student/passwordUpdate`;
+        const data = {
+            oldPassword: oldp.value.trim(),
+            password: newpwd.value.trim()
+        }
+        const response = await postData(url, data, getToken());
+        if(response.status === statusCode.Unauthorized){
+            showError('oldpwder');
+        }
+        if(response.status === statusCode.ok){
+            showSuccessError('pwdupd');
+            resetPasswordField(oldp, newpwd, cnfnewpwd)
+        }
+    }
 }
