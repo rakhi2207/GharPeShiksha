@@ -9,10 +9,12 @@
     <link rel="icon" type="image/png" href="./assets/images/logo.png" />
     <link rel="stylesheet" href="./assets/css/studentDashboard.css">
     <link rel="stylesheet" href="./assets/css/tutorDashboard.css">
+    <script src="./javascript/CommonStudentTutor.js"></script>
     <script src="./javascript/dashboardCommon.js"></script>
     <script src="./javascript/tutorDashborad.js"></script>
+    <script src="./javascript/tutor.js"></script>
 </head>
-<body>
+<body onload="checkTutorAuthenticated()">
     <nav class="nav-list">
         <div class="container-fluid">
             <div class="first-segment">
@@ -28,7 +30,7 @@
                   <img class="setting-img" src="./assets/images/settings.png">
                   Settings
                 </p>
-                <p class="account-text">
+                <p class="account-text" onclick="logout()">
                   <img  class="setting-img" src="./assets/images/turn-off.png">
                   Logout
                 </p>
@@ -38,18 +40,6 @@
         </div>
     </nav>
     <div class="data-collection">
-        <div class="card mb-3 student-card postedReq" onclick="changeDashboard('postedReq')">
-            <div class="row g-0">
-              <div class="col-md-4 content">
-                <img src="./assets/images/requirements.png" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8 student-data">
-                <div class="card-body">
-                  <p class="card-title">0 Classes Applied</p>
-                </div>
-              </div>
-            </div>
-        </div>
         <div class="card mb-3 student-card responded" onclick="changeDashboard('responded')">
             <div class="row g-0">
               <div class="col-md-4 content">
@@ -57,14 +47,14 @@
               </div>
               <div class="col-md-8 student-data">
                 <div class="card-body">
-                  <p class="card-title">0 Classes Available</p>
+                  <p class="card-title" id="postedReqCount" ></p>
                 </div>
               </div>
             </div>
         </div>
     </div>
-    <div class="tutors-list">
-      <p class="tutors-list-title">Based on your recent requirement we found the following tutors:</p>
+    <div class="applied-posts">
+      <p class="tutors-list-title">Students Requirement for Tutor:</p>
       <div class="tutors-data">
         <div class="card mb-3">
           <div class="card-body tutor-info">
@@ -89,34 +79,14 @@
         </div>
       </div>
     </div>    
-    <div class="applied-posts">
-      <p class="tutors-list-title">Your Requirements</p>
-      <div class="tutors-data">
-        <div class="card mb-3">
-          <div class="card-body tutor-info">
-            <h5 class="card-title tutor">Online Tutor for french, class X</h5>
-            <p class="card-text mode-tutor"><small class="text-body-secondary">Posted More than 1 day ago | Availability For: [Home Tuition at Student's Home]</small></p>
-            <p class="info">
-              <img class="mock-img" src="./assets/images/icons8-location-48.png">
-              Area: <span class="details">45 Gurugram(23.27 KM away)</span>
-            </p>
-            <p class="info">
-              <img class="mock-img" src="./assets/images/icons8-budget-48.png">
-              Budget: <span class="details"> 2000 per month</span>
-            </p>
-            <p class="info">
-              <img class="mock-img" src="./assets/images/icons8-class-100.png">
-              Classes: <span class="details">1 class per week</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="password-change">
-      <input type="text" placeholder="Old Password">
-      <input type="text" placeholder="New Password">
-      <input type="text" placeholder="Confirm New Password">
-      <button class="apply-tutor">Submit</button>
+      <p  style="display: none;" id="pwdupd">Password Updated Successfully</p>
+      <input type="text" id="oldpwd" placeholder="Old Password" onclick="hideError('oldpwder')">
+      <p style="display: none;" id="oldpwder">Wrong Old Password</p>
+      <input type="text" id="newpwd" placeholder="New Password" onclick="hideError('newpwder')">
+      <input type="text" id="cnfnewpwd" placeholder="Confirm New Password" onclick="hideError('newpwder')">
+      <p style="display: none;" id="newpwder" >Password do not match</p>
+      <button class="apply-tutor" onclick="resetTutorPassword()">Submit</button>
     </div>
 </body>
 </html>

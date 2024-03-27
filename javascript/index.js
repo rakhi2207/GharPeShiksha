@@ -27,3 +27,12 @@ function getCurrentAddress(){
       
       navigator.geolocation.getCurrentPosition(success, error, options);
 }
+
+function searchTutor(){
+    const address = document.getElementById("currAddress").value;
+    if(address){
+        window.location.href = `http://127.0.0.1:5500/tutor.html?address=${address}`
+    }else{
+        window.location.href = `http://127.0.0.1:5500/tutor.html`;
+    }
+}

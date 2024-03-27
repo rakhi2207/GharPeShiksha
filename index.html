@@ -29,11 +29,11 @@
       </nav>
     <div class="search-section">
         <div class="search-text-fields">
-            <input type="text" class="search-text" placeholder="Enter your address">
+            <input type="text" class="search-text" placeholder="Enter your address" id="currAddress">
             <button class="search-button address" onclick="getCurrentAddress()">Get Current Address</button>
         </div>
         <div class="search">
-            <button class="search-button">Search Tutor</button>
+            <button class="search-button" onclick="searchTutor()">Search Tutor</button>
             <button class="search-button">Search Student</button>
         </div>
     </div>
@@ -111,7 +111,7 @@
     </div>
     <div class="section-online">
         <p class="section-online-text">Confused? Do not worry, just take a free online counseling from GharPeShiksha and make your decision</p>
-        <button  class="section-online-button">BOOK FREE ONLINE DEMO</button>
+        <button  class="section-online-button" onclick="logout()">BOOK FREE ONLINE DEMO</button>
     </div>
     <div class="tutor">
         <p class="tutor-heading">Few of our best tutor</p>
@@ -175,7 +175,7 @@
         <div class="find-section">
             <div class="find-section1">
                 <p class="find-text">Looking for Tutor?</p>
-                <button class="find-button">Find Now</button>
+                <button class="find-button" onclick="logout()">Find Now</button>
             </div>
             <div class="find-section2">
                 <p class="find-text">Looking for Students?</p>

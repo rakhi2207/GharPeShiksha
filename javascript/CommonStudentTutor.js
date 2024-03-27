@@ -1,3 +1,44 @@
+let output = document.getElementById('output');
+let showCheckBoxes = true;
+let showSubjects = true;
+let showMode = true;
+let subjectList = new Set();
+
+function hidePostError(field){
+   const error = document.getElementById(field);
+   error.style.border = '1px solid grey';
+   const user = document.getElementById('errorUser');
+   if(user){
+       user.style.display = 'none';
+   }
+}
+function showPostError(field){
+    const error = document.getElementById(field);
+    error.style.border = '1px solid red';
+}
+
+function showError(field){
+    const ephnum = document.getElementById(field);
+    ephnum.style.display = 'block'
+    ephnum.style.color = 'red'
+}
+function showSuccessMessage(field){
+    const ephnum = document.getElementById(field);
+    ephnum.style.display = 'block'
+    ephnum.style.color = '	#32CD32'
+}
+
+function hideError(field){
+    const ephnum = document.getElementById(field);
+    if(ephnum){
+        ephnum.style.display = 'none'
+    }
+    const user = document.getElementById('errorUser');
+    if(user){
+        user.style.display = 'none';
+    }
+}
+ 
 function moveToSignup() {
     const login = document.getElementsByClassName("login")[0];
     const signup = document.getElementsByClassName("signup")[0];
@@ -25,11 +66,6 @@ function moveToLogin(){
     loginButton.style.backgroundColor = "#337ab7";
     loginButton.style.color = "white";
 }
-let output = document.getElementById('output');
-let showCheckBoxes = true;
-let showSubjects = true;
-let showMode = true;
-let subjectList = new Set();
 function showOptions(optionType) {
    let options =
       document.getElementById(`${optionType}`);
@@ -128,3 +164,177 @@ function getClass(value){
     classData.style.color = "black"
 }
 
+function hideDropDown(e) {
+   const dropdown = document.querySelector(".dropdown");
+   const dropdownSubject = document.querySelector(".dropdown-subject");
+   const classSelect = document.querySelector("#class");
+   const subject = document.querySelector("#subjects");
+   const mode = document.querySelector(".select-mode");
+   const drodownMode = document.querySelector("#mode");
+   if (dropdown && !dropdown.contains(e.target)) {
+       classSelect.style.display = "none";
+       showCheckBoxes = true;
+   }
+   if(dropdownSubject && !dropdownSubject.contains(e.target)){
+       subject.style.display = "none";
+       showSubjects = true;
+   }
+   if(mode && !mode.contains(e.target)){
+       drodownMode.style.display = "none";
+       showMode = true;
+   }
+   const showSubjectsData = document.getElementById("subjectList");
+   if(subjectList.size == 0 && showSubjectsData){
+       subjectList.add("Select Subjects");
+       showSubjectsData.style.color = "grey";
+   } else if(subjectList.size > 0 && !subjectList.has("Select Subjects") && showSubjectsData){
+       showSubjectsData.style.color = "black";       
+   }
+
+   if(subjectList.size > 4 && showSubjectsData){
+       showSubjectsData.style.fontSize = "xx-small";
+   }else if(showSubjectsData){
+       showSubjectsData.style.fontSize = "15px";
+   }
+   if(showSubjectsData){
+    const data = Array.from(subjectList).join(", ")
+    showSubjectsData.innerText = data;
+   }
+}
+
+window.addEventListener("click", hideDropDown);
+
+async function applyStudentClasses(event){
+    const tutorsdata = event.target.id.split("-");
+    const url = `${baseurl}/tutor/tutorApplied`;
+    const data = {
+        studentPhoneNumber: tutorsdata[1],
+        studentrequirementId:  tutorsdata[0]
+    }
+    try{
+        const response = await postData(url, data, getToken());
+        if(response.status === statusCode.ok){
+            const applyButton = document.getElementById(event.target.id);
+            disableApply(applyButton);
+        }
+    }catch(error){
+        console.log(error);
+    }
+}
+
+function disableApply(applyButton){
+    applyButton.style.cursor = 'auto';
+    applyButton.style.opacity = '0.2';
+}
+function createApplyButton(id, phoneNumber, isStudentAlreadyApplied, isTutorPage){
+    const applyDiv= document.createElement('div');
+    applyDiv.classList.add('applying-button');
+    const applyButton = document.createElement('button');
+    applyButton.innerText = 'Apply';
+    applyButton.classList.add('apply-tutor');
+    applyButton.setAttribute('id', `${id}-${phoneNumber}`);
+    applyDiv.appendChild(applyButton);
+    applyButton.addEventListener('click',isTutorPage ? applyStudentClasses : applyforTutor)
+    if(isStudentAlreadyApplied){
+        disableApply(applyButton);
+    }
+    return applyDiv;
+}
+
+function appendTutorsHeading(data){
+    const p = document.createElement('p');
+    p.classList.add('tutors-list-title');
+    p.innerHTML = data;
+    return p;
+}
+
+function createPostTemplate(post, isMatchedTutorPage , isStudentAlreadyApplied, issAppliedTutorPage, isTutorPage){
+    let parentClass = isMatchedTutorPage ? 'tutors-list' : 'applied-posts';
+    parentClass = issAppliedTutorPage ? 'applied-tutors-list' : parentClass;
+    const parent = document.getElementsByClassName(parentClass)[0];
+    const firstDiv = document.createElement('div');
+    firstDiv.classList.add('tutors-data');
+    const secondDiv = document.createElement('div');
+    secondDiv.classList.add('card');
+    secondDiv.classList.add('mb-3')
+    const thirdDiv = document.createElement('div');
+    thirdDiv.classList.add('card-body');
+    thirdDiv.classList.add('tutor-info');
+    const heading = document.createElement('h5');
+    heading.classList.add('card-title');
+    const locationP = document.createElement('div');
+    const locationSpan = document.createElement('span');
+    locationSpan.classList.add('details')
+    locationP.classList.add('info');
+    const locationImg = document.createElement('img');
+    locationImg.src = './assets/images/icons8-location-48.png';
+    locationImg.classList.add('mock-img');
+    locationP.appendChild(locationImg);
+    const locationPText = document.createElement('p');
+    locationP.appendChild(locationPText);
+    locationP.appendChild(locationSpan);
+
+    const locationP1 = document.createElement('div');
+    const locationSpan1 = document.createElement('span');
+    locationSpan1.classList.add('details')
+    locationP1.classList.add('info');
+    const locationImg1 = document.createElement('img');
+    locationImg1.src = './assets/images/icons8-experience-48.png';
+    locationImg1.classList.add('mock-img');
+    locationP1.appendChild(locationImg1);
+    const locationPText1 = document.createElement('p');
+    locationP1.appendChild(locationPText1);
+    locationP1.appendChild(locationSpan1);
+
+    const locationP2 = document.createElement('div');
+    const locationSpan2 = document.createElement('span');
+    locationSpan2.classList.add('details')
+    locationP2.classList.add('info');
+    const locationImg2 = document.createElement('img');
+    locationImg2.src = './assets/images/icons8-class-100.png';
+    locationImg2.classList.add('mock-img');
+    locationP2.appendChild(locationImg2);
+    const locationPText2 = document.createElement('p');
+    locationP2.appendChild(locationPText2);
+    locationP2.appendChild(locationSpan2);
+
+    const classData = isMatchedTutorPage ? post.selectedClass : post.studyClass;
+    heading.innerText = `${post.mode} Tutor for ${post.subjects}, class ${classData}`;
+    locationPText.innerText = `Area: `;
+    locationSpan.innerText = post.address;
+    locationPText1.innerText = isMatchedTutorPage ? `Experience: ` :`Budget: `;
+    locationSpan1.innerText = isMatchedTutorPage ? `${post.experience} years` :`${post.budget} per month`;
+    locationPText2.innerText = isMatchedTutorPage ? `Graduation: ` :`Classes: `;
+    locationSpan2.innerText = isMatchedTutorPage ? `${post.education}` : `${post.noOfClass} per week`;
+
+    thirdDiv.appendChild(heading);
+    thirdDiv.appendChild(locationP);
+    thirdDiv.appendChild(locationP1);
+    thirdDiv.appendChild(locationP2);
+    secondDiv.appendChild(thirdDiv);
+    firstDiv.appendChild(secondDiv);
+    if(isMatchedTutorPage || isTutorPage){
+        const applyButton = createApplyButton(post.requirementid, post.phoneNumber,isStudentAlreadyApplied, isTutorPage);
+        thirdDiv.appendChild(applyButton);
+    }
+    parent.appendChild(firstDiv);
+}
+
+function checkStudentChangePasswordData(oldp, newpwd, cnfnewpwd){
+    let isDataCorrect = true;
+    if(oldp.length < 1){
+        showError('oldpwder');
+        isDataCorrect = false;
+    }
+    if(newpwd.length < 1 || cnfnewpwd.length < 1 || newpwd !== cnfnewpwd){
+        showError('newpwder');
+        isDataCorrect = false;
+    }
+    return isDataCorrect;
+}
+
+function resetPasswordField(oldp, newpwd, cnfnewpwd){
+    oldp.value = '';
+    newpwd.value = '';
+    cnfnewpwd.value = '';
+}

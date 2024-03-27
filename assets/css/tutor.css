@@ -147,7 +147,7 @@ p{
     width: 50%;
     padding: 20px;
     border-radius: 5px;
-    height: 680px;
+    height: 690px;
 }
 .login-text, .signup-text{
     color: #3367AC;
@@ -295,7 +295,7 @@ input[type="text"]:focus, input[type="password"]:focus {
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 680px;
+        height: 690px;
     }
     .button-change{
         flex-direction: column;

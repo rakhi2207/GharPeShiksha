@@ -1,5 +1,5 @@
 let matchedTutorData = []; 
-let appliedTutorEmail = [];
+let alreadyAppliedTutor = [];
 let tutorAppliedData = [];
 async function studentAppliedTutor(){
     const urlStudentAppliedTutor = `${baseurl}/student/tutorApplied`;
@@ -8,7 +8,7 @@ async function studentAppliedTutor(){
         studentResponse = await studentResponse.json();
         for(let post of studentResponse.data){
             if(post.studentApplied === 't'){
-                appliedTutorEmail.push(post.tutorPhoneNumber)
+                alreadyAppliedTutor.push(post.tutorPhoneNumber)
             }
         }
     }catch(error){
@@ -19,16 +19,18 @@ async function matchedTutorAsStudentRequirement(countCall){
     const url = `${baseurl}/student/matchedTutor`;
     const subjects = [];
     const classes = [];
+    const requirementId = [];
     for(let post of studentAppliedTutorPost.data){
         classes.push(post.studyClass);
         subjects.push(post.subjects);
+        requirementId.push(post.requirementid);
     }
     const data = {
         subject: subjects,
-        class: classes
+        class: classes,
+        requirementId: requirementId
     }
     try{
-        console.log(matchedTutorData);
         if(matchedTutorData.length < 1){
             const response = await postData(url, data, getToken());
             const responsejson = await response.json();
@@ -42,7 +44,7 @@ async function matchedTutorAsStudentRequirement(countCall){
             parent.innerHTML = '';
             parent.appendChild(appendTutorsHeading('Based on your recent requirement we found the following tutors'));
             for(let idx = 0 ; idx < matchedTutorData.length ; idx++){
-                createPostTemplate(matchedTutorData[idx], true, idx, appliedTutorEmail.includes(matchedTutorData[idx].phoneNumber));
+                createPostTemplate(matchedTutorData[idx], true, alreadyAppliedTutor.includes(matchedTutorData[idx].phoneNumber), false, false);
             }
         }
     }catch(error){
@@ -61,13 +63,12 @@ async function appliedTutorList(callCount){
             respondedTutorCount.innerText = `${tutorAppliedData.length} Responded Tutors`
         }
         if(!callCount){
-            matchedTutorData = tutorAppliedData ;
             await studentAppliedTutor();
             const parent = document.getElementsByClassName('applied-tutors-list')[0];
             parent.innerHTML = '';
             parent.appendChild(appendTutorsHeading('Tutor Applied as per your requirement'));
             for(let idx = 0 ; idx < tutorAppliedData.length ; idx++){
-                createPostTemplate(tutorAppliedData[idx], true, idx, appliedTutorEmail.includes(tutorAppliedData[idx].phoneNumber), true);
+                createPostTemplate(tutorAppliedData[idx], true, alreadyAppliedTutor.includes(tutorAppliedData[idx].phoneNumber), true, false);
             }
         }
     }catch(error){
@@ -87,7 +88,7 @@ async function listPostAppliedByStudent(data){
     const postedReqCount = document.getElementById('postedReqCount');
     postedReqCount.innerText = `${posts.length} Requirements Posted`
     for(let post of posts){
-        createPostTemplate(post, false,0, false, false);
+        createPostTemplate(post, false, false, false);
     }
 }   
 

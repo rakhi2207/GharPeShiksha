@@ -1,4 +1,4 @@
-const baseurl = 'http://localhost:5000';
+const baseurl = 'https://ghar-pe-shiksha-backend.vercel.app';
 let studentAppliedTutorPost = {};
 async function postData(url = "", data = {}, token) {
     const response = await fetch(url, {
@@ -31,12 +31,12 @@ function signupStudent() {
     const phoneNumber = document.getElementById('phoneNumber')
     const email = document.getElementById('email');
     const password = document.getElementById('password');
-    const isDataCorrect = signupError(phoneNumber.value.trim(), email.value,password.value.trim());
+    const isDataCorrect = signupError(phoneNumber.value.trim(), email.value.trim(),password.value.trim());
     if(isDataCorrect){
         const api = `${baseurl}/student/signup`;
         const data = {
             phoneNumber: phoneNumber.value.trim(),
-            email: email.value,
+            email: email.value.trim(),
             password: password.value.trim()
         }
         postData(api, data)
@@ -72,7 +72,7 @@ function loginStudent() {
             if(response.status === statusCode.ok){
                 const responseValue = await response.json();
                 const token = responseValue.token;
-                localStorage.setItem('token', token);
+                localStorage.setItem('studentToken', token);
                 window.location.href = "http://127.0.0.1:5500/studentDashboard.html"
             }else{
                 showError('loginerror')
@@ -81,28 +81,6 @@ function loginStudent() {
         .catch(err=> {
             console.log(err);
         });   
-    }
-}
-
-function showError(field){
-    const ephnum = document.getElementById(field);
-    ephnum.style.display = 'block'
-    ephnum.style.color = 'red'
-}
-function showSuccessError(field){
-    const ephnum = document.getElementById(field);
-    ephnum.style.display = 'block'
-    ephnum.style.color = '	#32CD32'
-}
-
-function hideError(field){
-    const ephnum = document.getElementById(field);
-    if(ephnum){
-        ephnum.style.display = 'none'
-    }
-    const user = document.getElementById('errorUser');
-    if(user){
-        user.style.display = 'none';
     }
 }
 
@@ -148,14 +126,13 @@ async function fetchPostApplied(token){
         studentAppliedTutorPost = await getData(url, {
             Authorization: `Bearer ${token}`
         })
-        console.log('inside', studentAppliedTutorPost);
         return studentAppliedTutorPost;
     }catch (error){
         console.log(error);
     }
 }
 async function checkUserAuthenticated(){
-    const currentToken = localStorage.getItem('token');
+    const currentToken = localStorage.getItem('studentToken');
     if(currentToken === null){
         window.location.href = "http://127.0.0.1:5500/student.html";
     } else {
@@ -170,7 +147,7 @@ async function checkUserAuthenticated(){
 }
 
 async function checkUserAlreadyLoggedIn(){
-    const currentToken = localStorage.getItem('token');
+    const currentToken = localStorage.getItem('studentToken');
     if(currentToken){
         const isUserAlreadyLogIn = await fetchPostApplied(currentToken);
         if(isUserAlreadyLogIn && isUserAlreadyLogIn.status === statusCode.ok){
@@ -179,35 +156,17 @@ async function checkUserAlreadyLoggedIn(){
     }
 }
 
-function disableApply(applyButton){
-    applyButton.style.cursor = 'auto';
-    applyButton.style.opacity = '0.2';
-}
-function createApplyButton(id, isStudentAlreadyApplied){
-    const applyDiv= document.createElement('div');
-    applyDiv.classList.add('applying-button');
-    const applyButton = document.createElement('button');
-    applyButton.innerText = 'Apply';
-    applyButton.classList.add('apply-tutor');
-    applyButton.setAttribute('id', id);
-    applyDiv.appendChild(applyButton);
-    applyButton.addEventListener('click', applyforTutor)
-    if(isStudentAlreadyApplied){
-        disableApply(applyButton);
-    }
-    return applyDiv;
-}
-
 async function applyforTutor(event){
-    const tutorId = event.target.id;
+    const idsData = event.target.id.split("-");
     const url = `${baseurl}/student/studentAppliedTutor`;
     const data = {
-        tutorPhoneNumber: matchedTutorData[tutorId].phoneNumber
+        tutorPhoneNumber: idsData[1],
+        studentrequirementId: idsData[0]
     }
     try{
         const response = await postData(url, data, getToken());
         if(response.status === statusCode.ok){
-            const applyButton = document.getElementById(tutorId);
+            const applyButton = document.getElementById(`${idsData[0]}-${idsData[1]}`);
             disableApply(applyButton);
         }
     }catch(error){
@@ -215,87 +174,9 @@ async function applyforTutor(event){
     }
 }
 
-function createPostTemplate(post, isMatchedTutorPage , id, isStudentAlreadyApplied, issAppliedTutorPage){
-    let parentClass = isMatchedTutorPage ? 'tutors-list' : 'applied-posts';
-    parentClass = issAppliedTutorPage ? 'applied-tutors-list' : parentClass;
-    const parent = document.getElementsByClassName(parentClass)[0];
-    const firstDiv = document.createElement('div');
-    firstDiv.classList.add('tutors-data');
-    const secondDiv = document.createElement('div');
-    secondDiv.classList.add('card');
-    secondDiv.classList.add('mb-3')
-    const thirdDiv = document.createElement('div');
-    thirdDiv.classList.add('card-body');
-    thirdDiv.classList.add('tutor-info');
-    const heading = document.createElement('h5');
-    heading.classList.add('card-title');
-    const locationP = document.createElement('div');
-    const locationSpan = document.createElement('span');
-    locationSpan.classList.add('details')
-    locationP.classList.add('info');
-    const locationImg = document.createElement('img');
-    locationImg.src = './assets/images/icons8-location-48.png';
-    locationImg.classList.add('mock-img');
-    locationP.appendChild(locationImg);
-    const locationPText = document.createElement('p');
-    locationP.appendChild(locationPText);
-    locationP.appendChild(locationSpan);
-
-    const locationP1 = document.createElement('div');
-    const locationSpan1 = document.createElement('span');
-    locationSpan1.classList.add('details')
-    locationP1.classList.add('info');
-    const locationImg1 = document.createElement('img');
-    locationImg1.src = './assets/images/icons8-experience-48.png';
-    locationImg1.classList.add('mock-img');
-    locationP1.appendChild(locationImg1);
-    const locationPText1 = document.createElement('p');
-    locationP1.appendChild(locationPText1);
-    locationP1.appendChild(locationSpan1);
-
-    const locationP2 = document.createElement('div');
-    const locationSpan2 = document.createElement('span');
-    locationSpan2.classList.add('details')
-    locationP2.classList.add('info');
-    const locationImg2 = document.createElement('img');
-    locationImg2.src = './assets/images/icons8-class-100.png';
-    locationImg2.classList.add('mock-img');
-    locationP2.appendChild(locationImg2);
-    const locationPText2 = document.createElement('p');
-    locationP2.appendChild(locationPText2);
-    locationP2.appendChild(locationSpan2);
-
-    const classData = isMatchedTutorPage ? post.selectedClass : post.studyClass;
-    heading.innerText = `${post.mode} Tutor for ${post.subjects}, class ${classData}`;
-    locationPText.innerText = `Area: `;
-    locationSpan.innerText = post.address;
-    locationPText1.innerText = isMatchedTutorPage ? `Experience: ` :`Budget: `;
-    locationSpan1.innerText = isMatchedTutorPage ? `${post.experience} years` :`${post.budget} per month`;
-    locationPText2.innerText = isMatchedTutorPage ? `Graduation: ` :`Classes: `;
-    locationSpan2.innerText = isMatchedTutorPage ? `${post.education}` : `${post.noOfClass} per week`;
-
-    thirdDiv.appendChild(heading);
-    thirdDiv.appendChild(locationP);
-    thirdDiv.appendChild(locationP1);
-    thirdDiv.appendChild(locationP2);
-    secondDiv.appendChild(thirdDiv);
-    firstDiv.appendChild(secondDiv);
-    if(isMatchedTutorPage){
-        const applyButton = createApplyButton(id, isStudentAlreadyApplied);
-        thirdDiv.appendChild(applyButton);
-    }
-    parent.appendChild(firstDiv);
-}
-
-function appendTutorsHeading(data){
-    const p = document.createElement('p');
-    p.classList.add('tutors-list-title');
-    p.innerHTML = data;
-    return p;
-}
 
 function getToken(){
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('studentToken');
     return {
         Authorization: `Bearer ${token}`
     }
@@ -351,15 +232,6 @@ async function applyTutorPost(){
     }
 }
 
-function showPostError(field){
-    const error = document.getElementById(field);
-    error.style.border = '1px solid red';
-}
-
-function hidePostError(field){
-    const error = document.getElementById(field);
-    error.style.border = '1px solid grey';
-}
 function checkTutorPostData(classSelected, subjects, mode, address, noOfClass, budget){
     const classArray = ['I', 'II', 'III', 'IV', 'V' , 'VI', 'VII', 'VIII', 'IX', 'X'];
     const modeArray = ['Online Mode', 'Offline Mode', 'Video Mode'];
@@ -393,25 +265,6 @@ function checkTutorPostData(classSelected, subjects, mode, address, noOfClass, b
 
     return isDataCorrect;
 }
-
-function checkStudentChangePasswordData(oldp, newpwd, cnfnewpwd){
-    let isDataCorrect = true;
-    if(oldp.length < 1){
-        showError('oldpwder');
-        isDataCorrect = false;
-    }
-    if(newpwd.length < 1 || cnfnewpwd.length < 1 || newpwd !== cnfnewpwd){
-        showError('newpwder');
-        isDataCorrect = false;
-    }
-    return isDataCorrect;
-}
-
-function resetPasswordField(oldp, newpwd, cnfnewpwd){
-    oldp.value = '';
-    newpwd.value = '';
-    cnfnewpwd.value = '';
-}
 async function resetPassword(){
     const oldp = document.getElementById('oldpwd');
     const newpwd = document.getElementById('newpwd');
@@ -428,7 +281,7 @@ async function resetPassword(){
             showError('oldpwder');
         }
         if(response.status === statusCode.ok){
-            showSuccessError('pwdupd');
+            showSuccessMessage('pwdupd');
             resetPasswordField(oldp, newpwd, cnfnewpwd)
         }
     }
