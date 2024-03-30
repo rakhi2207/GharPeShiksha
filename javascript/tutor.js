@@ -182,7 +182,7 @@ async function loginTutor(){
         const responseValue = await response.json();
         const token = responseValue.token;
         localStorage.setItem('tutorToken', token);
-        window.location.href = "http://127.0.0.1:5500/tutorDashboard.html"
+        window.location.href = "https://rakhi2207.github.io/GharPeShiksha/tutorDashboard.html"
       }else{
         showError('loginerror')
       }
@@ -220,7 +220,7 @@ async function checkTutorAlreadyLoggedIn(){
   if(currentToken){
       const isUserAlreadyLogIn = await fetchClassesAvailable(currentToken);
       if(isUserAlreadyLogIn && isUserAlreadyLogIn.status === statusCode.ok){
-          window.location.href = "http://127.0.0.1:5500/tutorDashboard.html";
+          window.location.href = "https://rakhi2207.github.io/GharPeShiksha/tutorDashboard.html";
       }
   }
 }
@@ -257,11 +257,11 @@ async function listClassAvailable(data){
 async function checkTutorAuthenticated(){
     const currentToken = localStorage.getItem('tutorToken');
     if(currentToken === null){
-        window.location.href = "http://127.0.0.1:5500/tutor.html";
+        window.location.href = "https://rakhi2207.github.io/GharPeShiksha/tutor.html";
     } else {
         const userAuthentication = await fetchClassesAvailable(currentToken);
         if(userAuthentication.status !== statusCode.ok){
-            window.location.href = "http://127.0.0.1:5500/tutor.html";
+            window.location.href = "https://rakhi2207.github.io/GharPeShiksha/tutor.html";
             localStorage.clear();
         }else{
           listClassAvailable(userAuthentication);
@@ -293,6 +293,6 @@ async function resetTutorPassword(){
 
 function logout(){
   localStorage.clear();
-  window.location.href = `http://127.0.0.1:5500/student.html`;
+  window.location.href = `https://rakhi2207.github.io/GharPeShiksha/student.html`;
 }
 

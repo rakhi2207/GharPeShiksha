@@ -31,8 +31,8 @@ function getCurrentAddress(){
 function searchTutor(){
     const address = document.getElementById("currAddress").value;
     if(address){
-        window.location.href = `http://127.0.0.1:5500/tutor.html?address=${address}`
+        window.location.href = `https://rakhi2207.github.io/GharPeShiksha/tutor.html?address=${address}`
     }else{
-        window.location.href = `http://127.0.0.1:5500/tutor.html`;
+        window.location.href = `https://rakhi2207.github.io/GharPeShiksha/tutor.html`;
     }
 }

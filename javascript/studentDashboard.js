@@ -153,5 +153,5 @@ function changeDashboard(selectedTab){
 
 function logout(){
     localStorage.clear();
-    window.location.href = `http://127.0.0.1:5500/student.html`;
+    window.location.href = `https://rakhi2207.github.io/GharPeShiksha/student.html`;
 }

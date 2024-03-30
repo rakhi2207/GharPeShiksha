@@ -73,7 +73,7 @@ function loginStudent() {
                 const responseValue = await response.json();
                 const token = responseValue.token;
                 localStorage.setItem('studentToken', token);
-                window.location.href = "http://127.0.0.1:5500/studentDashboard.html"
+                window.location.href = "https://rakhi2207.github.io/GharPeShiksha/studentDashboard.html"
             }else{
                 showError('loginerror')
             }
@@ -134,11 +134,11 @@ async function fetchPostApplied(token){
 async function checkUserAuthenticated(){
     const currentToken = localStorage.getItem('studentToken');
     if(currentToken === null){
-        window.location.href = "http://127.0.0.1:5500/student.html";
+        window.location.href = "https://rakhi2207.github.io/GharPeShiksha/student.html";
     } else {
         const userAuthentication = await fetchPostApplied(currentToken);
         if(userAuthentication.status !== statusCode.ok){
-            window.location.href = "http://127.0.0.1:5500/student.html";
+            window.location.href = "https://rakhi2207.github.io/GharPeShiksha/student.html";
             localStorage.clear();
         }else{
             listPostAppliedByStudent(userAuthentication);
@@ -151,7 +151,7 @@ async function checkUserAlreadyLoggedIn(){
     if(currentToken){
         const isUserAlreadyLogIn = await fetchPostApplied(currentToken);
         if(isUserAlreadyLogIn && isUserAlreadyLogIn.status === statusCode.ok){
-            window.location.href = "http://127.0.0.1:5500/studentDashboard.html";
+            window.location.href = "https://rakhi2207.github.io/GharPeShiksha/studentDashboard.html";
         }
     }
 }
